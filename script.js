@@ -1,15 +1,15 @@
 'use strict';
 
 function generateSecretNumber() {
-
-    return '2578';
+    while (true){
+        let number = String(Math.floor(1000 + Math.random() * 9000));
+        if(validateNumber(number)){
+            return number;
+        }
+    }
 }
 
-function validateNumber(number){
-
-    if(typeof(number) === 'number'){
-        let str = String(number);
-    }
+function validateNumber(str){
     for(let i = 0; i < str.length; i++){
         let counter = 0;
         for(let j = 0; j < str.length; j++) {
