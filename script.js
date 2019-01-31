@@ -53,14 +53,22 @@ let prevResults = '';
 
 let inputNumber = prompt('Input your number:');
 
-while(inputNumber){
-    let bullsCount = getBullsCount(inputNumber);
-    let cowsCount = getCowsCount(inputNumber);
-    if (bullsCount === 4){
-        alert(`You win!!! Secret number - ${inputNumber}`);
-        break;
-    }
-    prevResults += `Your number: ${inputNumber}   bulls: ${bullsCount}   cows: ${cowsCount} \n`
-    inputNumber = prompt(prevResults);
+let moveCounter = 0;
 
+while(inputNumber){
+    moveCounter++;
+    if(validateNumber(inputNumber)){
+        let bullsCount = getBullsCount(inputNumber);
+        let cowsCount = getCowsCount(inputNumber);
+        if (bullsCount === 4) {
+            alert(`You win with ${moveCounter} moves!!! Secret number - ${inputNumber}`);
+            break;
+        }
+        prevResults += `Moves: ${moveCounter}   Your number: ${inputNumber}   bulls: ${bullsCount}   cows: ${cowsCount};\n`
+        inputNumber = prompt(prevResults);
+    }else{
+        prevResults += `Invalid number: ${inputNumber}; Input number with different number;\n`
+        inputNumber = prompt(prevResults);
+        moveCounter--;
+    }
 }
